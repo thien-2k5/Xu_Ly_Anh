@@ -12,6 +12,11 @@ Bài thực hành tập trung vào Canny edge detection và một số kỹ thu�
 ## Cấu trúc thư mục
 
 - `input/` — chứa ảnh đầu vào (`images.jpg`).
+- `output/` — chứa kết quả đầu ra từ các notebook:
+  - `I/` — kết quả từ notebook I.ipynb
+  - `II/` — kết quả từ notebook II.ipynb
+  - `III/` — kết quả từ notebook III.ipynb
+  - `IV/` — kết quả từ notebook IV.ipynb
 - `src/` — chứa các notebook Jupyter thực hành:
   - `I.ipynb`
   - `II.ipynb`
