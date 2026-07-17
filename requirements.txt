@@ -1,0 +1,17 @@
+fastapi>=0.111
+uvicorn[standard]>=0.30
+numpy>=1.26
+opencv-python>=4.9
+pillow>=10.0
+pydantic>=2.7
+torch>=2.0
+torchvision>=0.16
+transformers>=4.42
+timm>=1.0.15
+safetensors>=0.4
+deepguard==0.3.0
+
+# Development
+pytest>=8.0
+ruff>=0.5
+httpx>=0.27

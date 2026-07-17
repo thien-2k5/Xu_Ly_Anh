@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#111827" />
+    <title>FaceTrust - Kiểm định ảnh khuôn mặt</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#mainContent">Bỏ qua đến công cụ kiểm định</a>
+
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="FaceTrust">
+        <span class="brand-mark" aria-hidden="true">FT</span>
+        <span class="brand-copy">
+          <strong>FaceTrust</strong>
+          <small>Image Forensics Console</small>
+        </span>
+      </a>
+      <div class="system-state" role="status">
+        <span class="status-dot" aria-hidden="true"></span>
+        <strong id="healthStatus">Đang kết nối</strong>
+      </div>
+    </header>
+
+    <main class="app-shell" id="mainContent">
+      <header class="page-heading">
+        <div>
+          <p class="eyebrow">Deepfake image detection</p>
+          <h1>Kiểm định ảnh khuôn mặt</h1>
+          <p>Tải một ảnh để phân tích dấu hiệu face-swap và chất lượng vùng khuôn mặt.</p>
+        </div>
+        <div class="method-summary" aria-label="Quy trình phân tích">
+          <span>Detector face-swap chuyên biệt</span>
+          <span>Kết luận 3 trạng thái</span>
+        </div>
+      </header>
+
+      <section class="workspace" aria-label="Công cụ kiểm định ảnh">
+        <section class="panel input-panel" aria-labelledby="inputTitle">
+          <div class="panel-title">
+            <div>
+              <span class="step">01</span>
+              <h2 id="inputTitle">Ảnh cần kiểm tra</h2>
+            </div>
+            <span class="panel-chip" id="scannerStatus">Sẵn sàng</span>
+          </div>
+
+          <form id="detectForm" class="detect-form" method="post" enctype="multipart/form-data" novalidate>
+            <label class="dropzone" id="dropzone">
+              <input
+                required
+                class="file-input"
+                type="file"
+                name="image"
+                accept=".jpg,.jpeg,.jfif,.png,.webp,image/jpeg,image/png,image/webp"
+              />
+              <span class="upload-icon" aria-hidden="true">+</span>
+              <strong>Thả ảnh vào đây hoặc chọn từ máy tính</strong>
+              <span>JPG, JFIF, PNG, WebP · tối đa 16 MB</span>
+            </label>
+
+            <div class="preview-area" id="previewPanel" hidden>
+              <img id="previewImage" alt="Ảnh được chọn để kiểm tra" />
+              <div class="preview-meta">
+                <strong id="selectedFileName">Ảnh đã chọn</strong>
+                <button class="ghost-button" id="resetFileButton" type="button">Đổi ảnh</button>
+              </div>
+            </div>
+
+            <button class="scan-button" type="submit">
+              <span class="button-idle">Bắt đầu kiểm định</span>
+              <span class="button-busy">Đang phân tích</span>
+            </button>
+          </form>
+        </section>
+
+        <section class="panel result-panel" id="resultPanel" aria-labelledby="resultHeading" aria-live="polite">
+          <div class="panel-title">
+            <div>
+              <span class="step">02</span>
+              <h2 id="resultHeading">Kết quả phân tích</h2>
+            </div>
+            <span class="result-chip" id="resultIndicator">Chờ quét</span>
+          </div>
+
+          <div class="result-hero">
+            <div class="verdict-mark" id="verdictMark" aria-hidden="true">FT</div>
+            <div>
+              <p class="verdict-kicker" id="verdictKicker">Chưa có dữ liệu</p>
+              <h3 id="resultTitle">Chọn ảnh để bắt đầu</h3>
+              <p id="resultText">Kết quả sẽ xuất hiện sau khi detector hoàn tất phân tích.</p>
+            </div>
+          </div>
+
+          <div class="scan-state" id="scanState" hidden>
+            <div class="scan-visual" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="scan-track" aria-hidden="true"><span id="scanProgressBar"></span></div>
+            <p id="scanStage">Đang chuẩn bị ảnh</p>
+          </div>
+
+          <div class="score-layout">
+            <div class="score-metric">
+              <span>Chỉ số rủi ro fake</span>
+              <strong id="riskScore">--</strong>
+              <div class="meter risk-meter"><span id="riskBar"></span></div>
+            </div>
+            <div class="score-metric">
+              <span>Biên so với ngưỡng</span>
+              <strong id="marginScore">--</strong>
+              <div class="meter margin-meter"><span id="marginBar"></span></div>
+            </div>
+          </div>
+
+          <dl class="result-facts" id="resultFacts">
+            <div><dt>Kết luận</dt><dd>--</dd></div>
+            <div><dt>Mức rủi ro</dt><dd>--</dd></div>
+            <div><dt>Khuôn mặt</dt><dd>--</dd></div>
+            <div><dt>Phiên quét</dt><dd>--</dd></div>
+          </dl>
+
+          <section class="insight-block" id="insightBlock" hidden aria-labelledby="insightTitle">
+            <div class="insight-heading">
+              <h3 id="insightTitle">Tín hiệu giải thích</h3>
+              <span id="reviewLabel">Phân tích mô hình</span>
+            </div>
+            <ul class="insight-list" id="insightList"></ul>
+          </section>
+        </section>
+      </section>
+    </main>
+
+    <footer class="page-footer">
+      <span>FaceTrust</span>
+      <span>Face-swap · Forensic signals · Quality analysis</span>
+    </footer>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
