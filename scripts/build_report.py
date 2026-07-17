@@ -17,7 +17,7 @@ OUTPUT_PATH = PROJECT_DIR / "docs" / "Bao_Cao_FaceTrust_Hoan_Thien.docx"
 ASSET_DIR = PROJECT_DIR / "docs" / "report-assets"
 CROSS_RESULTS = PROJECT_DIR / "reports" / "cross_dataset_results.json"
 PIPELINE_RESULTS = PROJECT_DIR / "reports" / "evaluation_results.json"
-TOC_MAP_PATH = PROJECT_DIR / "artifacts" / "report_work" / "toc_pages.json"
+TOC_MAP_PATH = PROJECT_DIR / "docs" / "report_toc_pages.json"
 
 BLUE = "2E74B5"
 DARK_BLUE = "1F4D78"
